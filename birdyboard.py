@@ -1,9 +1,9 @@
-
+import csv
 
 class Birdyboard:
 
     def __init__(self):
-        pass
+        self.userCollection = dict()
 
     def birdy_menu(self):
         print("-----------------------------------------")
@@ -27,28 +27,28 @@ class Birdyboard:
 
                 if (choice == "1"):
                     print("#1: You chose to create a New User Account!")
-                    ints = self.random_numbers(int(count))
-                    self.print_results(ints)
+                    userNew = self.new_user_create()
+                    self.print_results
 
                 if choice == "2":
                     print("#2: You chose to select a user!")
-                    fibo = self.fibonacci_sequence(int(count))
-                    self.print_results(fibo)
+                    userSel = self.select_user()
+                    self.print_results
 
                 if choice == "3":
                     print("#3: You chose to view chirps!")
-                    prime = self.generate_prime_numbers(int(count))
-                    self.print_results(prime)
+                    chirp = self.view_chirps()
+                    self.print_results
 
                 if choice == "4":
                     print("#4: You chose public chirp!")
-                    prime = self.generate_prime_numbers(int(count))
-                    self.print_results(prime)
+                    pub = self.public_chirp()
+                    self.print_results
 
                 if choice == "5":
                     print("#5: You chose private chirp!")
-                    prime = self.generate_prime_numbers(int(count))
-                    self.print_results(prime)
+                    priv = self.private_chirp()
+                    self.print_results
 
                 if (choice == "6"):
                     print("Until next time!")
@@ -58,11 +58,33 @@ class Birdyboard:
             print("Please enter a number for your choice")
         self.birdy_menu()
 
+
+
+
     def new_user_create(self):
-        pass
+
+        print("Enter Full Name")
+        nuName = input("Name: ")
+        print("Enter Screen Name")
+        nuSN = input("SN: ")
+
+        with open('users.txt', 'a') as newUser_file:
+            users.write({nuName})
+
+
+
 
     def select_user(self):
-        pass
+        with open("users.txt", 'r') as users:
+            for u in users:
+                print(u[:-1])
+
+        print("Which User is Chirping?")
+        print("...")
+        userSel = input("> ")
+
+
+
 
     def view_chirps(self):
         pass
@@ -72,6 +94,12 @@ class Birdyboard:
 
     def private_chirp(self):
         pass
+
+    # def combined_users_dict(self):
+    #     fullnames = self.users()
+    #     screennames = self.users()
+
+
 
 
 if __name__ == "__main__":
