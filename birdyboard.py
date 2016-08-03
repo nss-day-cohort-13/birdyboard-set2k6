@@ -1,9 +1,15 @@
 import csv
+import time
+import uuid
+import pickle
+from chirp import *
+from user import *
 
 class Birdyboard:
 
     def __init__(self):
-        self.userCollection = dict()
+        self.users = []
+        # self.userCollection = {}
 
     def birdy_menu(self):
         print("-----------------------------------------")
@@ -62,16 +68,20 @@ class Birdyboard:
 
 
     def new_user_create(self):
-
         print("Enter Full Name")
         nuName = input("Name: ")
         print("Enter Screen Name")
         nuSN = input("SN: ")
 
-        with open('users.txt', 'a') as newUser_file:
-            users.write({nuName})
+        newUser = User(nuName, nuSN)
+        self.users.append(newUser)
 
+        with open('userList', 'wb+') as f:
+            pickle.dump(self.users, f)
 
+        print("New User Created.")
+        time.sleep(2)
+        self.select_user()
 
 
     def select_user(self):
@@ -103,5 +113,5 @@ class Birdyboard:
 
 
 if __name__ == "__main__":
-  menu = Birdyboard()
-  menu.birdy_menu()
+  birdy = Birdyboard()
+  birdy.birdy_menu()
