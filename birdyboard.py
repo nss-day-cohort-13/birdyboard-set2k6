@@ -9,7 +9,10 @@ class Birdyboard:
 
     def __init__(self):
         self.users = []
-        # self.userCollection = {}
+        with open('userList', 'rb') as f:
+            deserialized = pickle.load(f)
+
+        self.chirps = []
 
     def birdy_menu(self):
         print("-----------------------------------------")
@@ -34,27 +37,27 @@ class Birdyboard:
                 if (choice == "1"):
                     print("#1: You chose to create a New User Account!")
                     userNew = self.new_user_create()
-                    self.print_results
+                    # self.print_results
 
                 if choice == "2":
                     print("#2: You chose to select a user!")
                     userSel = self.select_user()
-                    self.print_results
+                    # self.print_results
 
                 if choice == "3":
                     print("#3: You chose to view chirps!")
                     chirp = self.view_chirps()
-                    self.print_results
+                    # self.print_results
 
                 if choice == "4":
                     print("#4: You chose public chirp!")
                     pub = self.public_chirp()
-                    self.print_results
+                    # self.print_results
 
                 if choice == "5":
                     print("#5: You chose private chirp!")
                     priv = self.private_chirp()
-                    self.print_results
+                    # self.print_results
 
                 if (choice == "6"):
                     print("Until next time!")
@@ -80,18 +83,34 @@ class Birdyboard:
             pickle.dump(self.users, f)
 
         print("New User Created.")
-        time.sleep(2)
+        time.sleep(1)
         self.select_user()
 
 
     def select_user(self):
-        with open("users.txt", 'r') as users:
-            for u in users:
-                print(u[:-1])
+        with open('userList', 'rb') as f:
+            self.users = pickle.load(f)
+        # for user in self.users:
+            # print('FullName:',user.full_name,'ScreenName:',user.screen_name)
 
+
+        userCounter = 0
+        for user in enumerate(self.users):
+            print("{0}. {1}".format(user[0]+1, user[1].screen_name))
+
+        print("........................")
         print("Which User is Chirping?")
-        print("...")
+        print("........................")
         userSel = input("> ")
+
+        try:
+            userSel = int(userSel)
+
+            print(self.users[userSel])
+
+        except:
+            print("Error")
+
 
 
 
