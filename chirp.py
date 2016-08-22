@@ -1,3 +1,4 @@
+import uuid
 
 class Chirp:
 
@@ -6,6 +7,8 @@ class Chirp:
         self.user_id = user
         self.private = private
         self.target = receiver
-        self.chirp_id = 8
+        self.chirp_uuid = uuid.uuid4()
 
 
+if __name__ == '__main__':
+  c = Chirp()

@@ -8,6 +8,11 @@ from user import *
 class Birdyboard:
 
     def __init__(self):
+        """Initialization
+        """
+        self.current_user = None
+
+
         self.users = []
         with open('userList', 'rb') as f:
             deserialized = pickle.load(f)
@@ -15,19 +20,19 @@ class Birdyboard:
         self.chirps = []
 
     def birdy_menu(self):
+
         print("-----------------------------------------")
         print("--      Welcome to Birdyboard~~~~~     --")
         print("-----------------------------------------")
         print("1. New User Account")
         print("2. Select User")
-        print("3. View Chirps")
-        print("4. Public Chirp")
-        print("5. Private Chirp")
-        print("6. Exit")
+        print("3. Chirp")
+        print("4. View Chirps")
+        print("5. Exit")
         choice = input("> ")
 
         try:
-            if int(choice) > 0 and int(choice) < 7:
+            if int(choice) > 0 and int(choice) < 6:
 
                 # if choice != "6":
                 #     print("")
@@ -45,21 +50,16 @@ class Birdyboard:
                     # self.print_results
 
                 if choice == "3":
-                    print("#3: You chose to view chirps!")
-                    chirp = self.view_chirps()
+                    print("#3: You chose make a new chirp!")
+                    chirp = self.create_chirps()
                     # self.print_results
 
                 if choice == "4":
-                    print("#4: You chose public chirp!")
-                    pub = self.public_chirp()
+                    print("#4: You chose view chirps!")
+                    pub = self.view_chirps()
                     # self.print_results
 
-                if choice == "5":
-                    print("#5: You chose private chirp!")
-                    priv = self.private_chirp()
-                    # self.print_results
-
-                if (choice == "6"):
+                if (choice == "5"):
                     print("Until next time!")
                     raise SystemExit()
 
@@ -107,6 +107,8 @@ class Birdyboard:
             userSel = int(userSel)
 
             print(self.users[userSel])
+            time.sleep(1)
+            self.birdy_menu
 
         except:
             print("Error")
@@ -115,14 +117,12 @@ class Birdyboard:
 
 
 
+    def create_chirps(self):
+        pass
+
     def view_chirps(self):
         pass
 
-    def public_chirp(self):
-        pass
-
-    def private_chirp(self):
-        pass
 
     # def combined_users_dict(self):
     #     fullnames = self.users()

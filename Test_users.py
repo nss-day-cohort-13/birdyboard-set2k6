@@ -9,6 +9,7 @@ class TestUser(unittest.TestCase):
 
   def test_user_creation(self):
     newUser = user.User("Tractor Ryan", "tryan")
+
     self.assertEqual("Tractor Ryan", newUser.full_name)
     self.assertEqual("tryan", newUser.screen_name)
     self.assertIsNotNone(newUser.user_id)
