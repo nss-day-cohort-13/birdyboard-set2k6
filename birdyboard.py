@@ -139,7 +139,10 @@ class Birdyboard:
     def view_chirps(self):
         with open('chirpList', 'rb') as c:
             self.users = pickle.load(c)
-        pass
+
+        chirpCounter = 0
+        for chirp in enumerate(self.chirps):
+            print("{0}. {1}".format(chirp[0]+1, chirp[1].message))
 
 
     # def combined_users_dict(self):
