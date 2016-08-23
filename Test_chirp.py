@@ -18,7 +18,7 @@ class TestChirp(unittest.TestCase):
     source = User("Arnold Swartzeneggar", "terminator")
     chirp = Chirp(
                   message="Hi everyone",
-                  user=source.user_id,
+                  user=source.user_uuid,
                   private=False
                   )
 
@@ -26,10 +26,10 @@ class TestChirp(unittest.TestCase):
 
     # self.assertTrue(it_exists)
     self.assertEqual(chirp.message, "Hi everyone")
-    self.assertEqual(chirp.user_id, source.user_id)
-    self.assertEqual(chirp.private, False)
+    self.assertEqual(chirp.user_uuid, source.user_uuid)
+    # self.assertEqual(chirp.private, False)
     self.assertIsInstance(chirp, Chirp)
-    self.assertIsNotNone(chirp.chirp_id)
+    self.assertIsNotNone(chirp.chirp_uuid)
 
 
   def test_private_chirp_creation(self):
@@ -37,9 +37,9 @@ class TestChirp(unittest.TestCase):
     target = User("George Lucas", "hahajarjar")
     chirp = Chirp(
                   message="Hi everyone",
-                  user=source.user_id,
+                  user=source.user_uuid,
                   private=True,
-                  receiver=target.user_id
+                  receiver=target.user_uuid
                   )
     self.assertIsInstance(chirp, Chirp)
 

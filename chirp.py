@@ -2,11 +2,11 @@ import uuid
 
 class Chirp:
 
-    def __init__(self, message, user, private, receiver = None):
+    def __init__(self, message, user_uuid):
         self.message = message
-        self.user_id = user
-        self.private = private
-        self.target = receiver
+        self.user_uuid = user_uuid
+        # self.private = private
+        # self.target = receiver
         self.chirp_uuid = uuid.uuid4()
 
 

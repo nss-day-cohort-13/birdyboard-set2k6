@@ -18,6 +18,8 @@ class Birdyboard:
             deserialized = pickle.load(f)
 
         self.chirps = []
+        with open('chirpList', 'rb') as c:
+            deserialized = pickle.load(c)
 
     def birdy_menu(self):
 
@@ -118,9 +120,25 @@ class Birdyboard:
 
 
     def create_chirps(self):
+        print("Enter New Chirp")
+        nuChirp = input("Chirp: ")
+
+        newChirp = Chirp(nuChirp, User)
+        self.chirps.append(newChirp)
+
+
+        with open('chirpList', 'wb+') as c:
+            pickle.dump(self.chirps, c)
+
+        print("New Chirp Created!")
+        time.sleep(1)
+        self.birdy_menu()
+
         pass
 
     def view_chirps(self):
+        with open('chirpList', 'rb') as c:
+            self.users = pickle.load(c)
         pass
 
 

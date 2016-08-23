@@ -12,7 +12,7 @@ class TestUser(unittest.TestCase):
 
     self.assertEqual("Tractor Ryan", newUser.full_name)
     self.assertEqual("tryan", newUser.screen_name)
-    self.assertIsNotNone(newUser.user_id)
+    self.assertIsNotNone(newUser.user_uuid)
     self.assertIsInstance(newUser, user.User)
     pass
 
