@@ -1,3 +1,5 @@
+import os
+import sys
 import csv
 import time
 import uuid
@@ -21,7 +23,22 @@ class Birdyboard:
         with open('chirpList', 'rb') as c:
             deserialized = pickle.load(c)
 
+
+    def page_clear(self):
+        """ This clears the page when called
+
+        """
+        os.system('cls' if os.name == 'nt' else 'clear')
+
     def birdy_menu(self):
+
+        # while True:
+        self.page_clear()
+        if not self.current_user:
+            print('No Current User')
+
+        else:
+            print('Current user: ', self.current_user[1])
 
         print("-----------------------------------------")
         print("--      Welcome to Birdyboard~~~~~     --")
@@ -52,11 +69,21 @@ class Birdyboard:
                     # self.print_results
 
                 if choice == "3":
-                    print("#3: You chose make a new chirp!")
-                    chirp = self.create_chirps()
+                    if not self.current_user:
+                        print('Please create or select a user')
+                        time.sleep(1)
+                    # continue
+                    else:
+                        print("#3: You chose make a new chirp!")
+                        chirp = self.create_chirps()
                     # self.print_results
 
                 if choice == "4":
+                    if not self.current_user:
+                        print('Please create or select a user')
+                    time.sleep(1)
+                    # continue
+                else:
                     print("#4: You chose view chirps!")
                     pub = self.view_chirps()
                     # self.print_results
@@ -79,6 +106,7 @@ class Birdyboard:
         nuSN = input("SN: ")
 
         newUser = User(nuName, nuSN)
+        self.current_user = newUser
         self.users.append(newUser)
 
         with open('userList', 'wb+') as f:
@@ -114,9 +142,6 @@ class Birdyboard:
 
         except:
             print("Error")
-
-
-
 
 
     def create_chirps(self):
