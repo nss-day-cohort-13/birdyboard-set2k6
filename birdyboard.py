@@ -1,8 +1,5 @@
 import os
-import sys
-import csv
 import time
-import uuid
 import pickle
 from chirp import *
 from user import *
